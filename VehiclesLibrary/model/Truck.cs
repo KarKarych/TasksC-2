@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Task5._18.model
+namespace VehiclesLibrary.model
 {
   public class Truck : Car
   {

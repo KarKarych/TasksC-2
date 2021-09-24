@@ -9,6 +9,7 @@ namespace Task4._13
     {
       int number;
       bool result;
+      
       do
       {
         Console.WriteLine("Choose class:" +
@@ -20,7 +21,6 @@ namespace Task4._13
       switch (number)
       {
         case 1:
-          var flag = true;
           ComputerNetwork computerNetwork = null;
 
           do
@@ -30,18 +30,17 @@ namespace Task4._13
               "(line by line)");
 
             var organizationName = Console.ReadLine();
-            flag &= TryParse(Console.ReadLine(), out var numberOfWorkstations);
-            flag &= TryParse(Console.ReadLine(), out var avgStationsDistance);
+            result = TryParse(Console.ReadLine(), out var numberOfWorkstations);
+            result &= TryParse(Console.ReadLine(), out var avgStationsDistance);
 
-            if (flag)
+            if (result)
               computerNetwork = new ComputerNetwork(organizationName, numberOfWorkstations, avgStationsDistance);
-          } while (!flag);
+          } while (!result);
 
           Console.WriteLine(computerNetwork);
           Console.WriteLine("Quality: " + computerNetwork.GetQuality());
           break;
         case 2:
-          flag = true;
           ChildComputerNetwork childComputerNetwork = null;
 
           do
@@ -51,16 +50,16 @@ namespace Task4._13
               "(line by line)");
 
             var organizationName = Console.ReadLine();
-            flag &= TryParse(Console.ReadLine(), out var numberOfWorkstations);
-            flag &= TryParse(Console.ReadLine(), out var avgStationsDistance);
-            flag &= TryParse(Console.ReadLine(), out var avgSpeed);
+            result = TryParse(Console.ReadLine(), out var numberOfWorkstations);
+            result &= TryParse(Console.ReadLine(), out var avgStationsDistance);
+            result &= TryParse(Console.ReadLine(), out var avgSpeed);
 
-            if (flag)
+            if (result)
               childComputerNetwork = new ChildComputerNetwork(organizationName,
                 numberOfWorkstations,
                 avgStationsDistance,
                 avgSpeed);
-          } while (!flag);
+          } while (!result);
 
           Console.WriteLine(childComputerNetwork);
           Console.WriteLine("Quality: " + childComputerNetwork.GetQuality());

@@ -1,0 +1,9 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=25781EFF_002DA180_002D4D8A_002DB43E_002DB570D5FA7BD6_002Fd_003Amodel_002Fd_003Aenums_002Ff_003AGearType_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=25781EFF_002DA180_002D4D8A_002DB43E_002DB570D5FA7BD6_002Fd_003Amodel_002Fd_003Aenums_002Ff_003AMovementType_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=25781EFF_002DA180_002D4D8A_002DB43E_002DB570D5FA7BD6_002Fd_003Amodel_002Ff_003ACar_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=25781EFF_002DA180_002D4D8A_002DB43E_002DB570D5FA7BD6_002Fd_003Amodel_002Ff_003AIVehicle_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=25781EFF_002DA180_002D4D8A_002DB43E_002DB570D5FA7BD6_002Fd_003Amodel_002Ff_003ATruck_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Task6_002E1_002FForm1/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/ResxEditorPersonal/Initialized/@EntryValue">True</s:Boolean></wpf:ResourceDictionary>

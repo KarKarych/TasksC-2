@@ -1,7 +1,6 @@
-﻿using System;
-using Task5._18.model.enums;
+﻿using VehiclesLibrary.model.enums;
 
-namespace Task5._18.model
+namespace VehiclesLibrary.model
 {
   public abstract class Car : IVehicle
   {

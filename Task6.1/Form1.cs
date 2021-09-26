@@ -6,33 +6,45 @@ namespace Task6._1
 {
   public partial class Form1 : Form
   {
-    private ComboBox _comboBox2;
+    private const string LibraryName = "../../../VehiclesLibrary/bin/Debug/VehiclesLibrary.dll";
+    private readonly ClassFinder _classFinder= new(LibraryName);
 
     public Form1()
     {
       InitializeComponent();
+      InitializeCombobox1();
+    }
 
-
-      const string libraryName = "../../../VehiclesLibrary/bin/Debug/VehiclesLibrary.dll";
-      var classFinder = new ClassFinder();
-      var classesList = classFinder.ClassesImplementingInterface(libraryName);
-
-      foreach (var classType in classesList)
+    private void InitializeCombobox1()
+    {
+      foreach (var classType in _classFinder.ClassesList)
       {
         comboBox1.Items.Add(classType.Name);
       }
-
-      label1.Text = @"App";
+    }
+    
+    private void InitializeCombobox2()
+    {
+      comboBox2.Visible = true;
+      label1.Visible = true;
+      var field = new Field("2121");
+      var field1 = new Field("2121");
+      var field2 = new Field("2121");
+      var field3 = new Field("2121");
+      var field4 = new Field("2121");
+      var field5 = new Field("2121");
+      flowLayoutPanel1.Controls.Add(field);
+      flowLayoutPanel1.Controls.Add(field1);
+      flowLayoutPanel1.Controls.Add(field2);
+      flowLayoutPanel1.Controls.Add(field3);
+      flowLayoutPanel1.Controls.Add(field4);
+      flowLayoutPanel1.Controls.Add(field5);
+      
     }
 
 
     private void button1_Click(object sender, EventArgs e)
     {
-    }
-
-    private void label1_Click(object sender, EventArgs e)
-    {
-      throw new System.NotImplementedException();
     }
 
     private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,23 +53,23 @@ namespace Task6._1
 
     private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
     {
-      if (_comboBox2 != null)
-      {
-        _comboBox2.Items.Clear();
-        comboBox1.SelectedIndex = 0;
-        _comboBox2.Items.Add(new Random().Next(3));
-      };
+      InitializeCombobox2();
       
-      _comboBox2 = new ComboBox();
-      Controls.Add(_comboBox2);
-      _comboBox2.FormattingEnabled = true;
-      _comboBox2.Location = new System.Drawing.Point(226, 60);
-      _comboBox2.Name = "comboBox2";
-      _comboBox2.Size = new System.Drawing.Size(124, 21);
-      _comboBox2.TabIndex = 3;
-      _comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
-      
-      _comboBox2.Items.Add(new Random().Next(3));
+    }
+
+    private void comboBox2_SelectedIndexChanged_1(object sender, EventArgs e)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    private void label1_Click(object sender, EventArgs e)
+    {
+      throw new System.NotImplementedException();
+    }
+
+    private void label1_Click_1(object sender, EventArgs e)
+    {
+      throw new System.NotImplementedException();
     }
   }
 }

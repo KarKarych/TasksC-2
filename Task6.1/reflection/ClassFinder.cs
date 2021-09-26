@@ -1,14 +1,21 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using VehiclesLibrary.model;
 
 namespace Task6._1.reflection
 {
   public class ClassFinder
   {
+    private readonly string _path;
+    public IEnumerable<Type> ClassesList { get; }
+
+    public ClassFinder(string path)
+    {
+      _path = path;
+      ClassesList = ClassesImplementingInterface();
+    }
+
     private bool IsRealClass(Type testType)
     {
       return testType.IsAbstract == false
@@ -16,15 +23,15 @@ namespace Task6._1.reflection
              && testType.IsInterface == false;
     }
 
-    public IEnumerable<Type> ClassesImplementingInterface(string libraryName)
+    private IEnumerable<Type> ClassesImplementingInterface()
     {
-      var types = Assembly.LoadFrom(libraryName)
+      var types = Assembly.LoadFrom(_path)
         .GetTypes();
       var interfaces = types.Where(type => type.IsInterface);
       var interfacesList = interfaces.ToList();
       interfacesList.GetEnumerator().MoveNext();
       var mainInterface = interfacesList[0];
-      
+
       return types
         .Where(type => type.GetInterfaces().Contains(mainInterface))
         .Where(IsRealClass);

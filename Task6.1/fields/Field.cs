@@ -1,27 +1,25 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace Task6._1
+namespace Task6._1.fields
 {
   internal class Field : FlowLayoutPanel
   {
-    public readonly Label Label;
-    public readonly TextBox TextBox;
+    public TextBox TextBox { get; }
 
     public Field(string labelText)
     {
       AutoSize = true;
-
-      Label = new Label();
-      Label.Text = labelText;
-      Label.AutoSize = true;
-      Label.Anchor = AnchorStyles.Left;
-      Label.TextAlign = ContentAlignment.MiddleLeft;
-
-      Controls.Add(Label);
+      var label = new Label();
+      label.Text = labelText;
+      label.AutoSize = true;
+      label.Anchor = AnchorStyles.Left;
+      label.TextAlign = ContentAlignment.MiddleLeft;
 
       TextBox = new TextBox();
-
+      TextBox.MinimumSize = new Size(120, 30);
+      
+      Controls.Add(label);
       Controls.Add(TextBox);
     }
 

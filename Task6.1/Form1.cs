@@ -265,7 +265,7 @@ namespace Task6._1
       }
 
       var result = _currentMethod.Invoke(_currentVehicleObj, args);
-
+      
       label7.Text = result == null ? "Метод имеет сигнатуру void" : result.ToString();
       label7.Visible = true;
     }

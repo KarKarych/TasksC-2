@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 
 namespace VehiclesLibrary.model
@@ -37,14 +36,14 @@ namespace VehiclesLibrary.model
 
     public int GetCargoWeightByName(string name)
     {
-      return _cargoInTruck[name];
+      return _cargoInTruck.ContainsKey(name) ? _cargoInTruck[name] : 0;
     }
 
     public bool AddCargo(string name, int weight)
     {
       if (!SetTruckLoad(weight) || _cargoInTruck.ContainsKey(name))
         return false;
-      
+
       _cargoInTruck.Add(name, weight);
       return true;
     }

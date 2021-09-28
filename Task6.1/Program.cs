@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Task6._1
@@ -13,7 +14,9 @@ namespace Task6._1
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new Form1());
+      var form1 = new Form1();
+      form1.Size = new Size(1280, 960);
+      Application.Run(form1);
     }
   }
 }

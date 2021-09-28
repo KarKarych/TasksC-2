@@ -1,4 +1,5 @@
-﻿using VehiclesLibrary.model.enums;
+﻿using System;
+using VehiclesLibrary.model.enums;
 
 namespace VehiclesLibrary.model
 {
@@ -20,8 +21,8 @@ namespace VehiclesLibrary.model
     public decimal Accelerate(decimal deltaSpeed)
     {
       GoAhead();
-      CurrentCarSpeed += deltaSpeed;
-      CurrentFuelConsumption += deltaSpeed / 4;
+      CurrentCarSpeed += Math.Abs(deltaSpeed);
+      CurrentFuelConsumption += Math.Abs(deltaSpeed) / 4;
 
       return CurrentCarSpeed;
     }
@@ -29,8 +30,8 @@ namespace VehiclesLibrary.model
     public decimal ReduceSpeed(decimal deltaSpeed)
     {
       GoAhead();
-      CurrentCarSpeed -= deltaSpeed;
-      CurrentFuelConsumption -= deltaSpeed / 4;
+      CurrentCarSpeed -= Math.Abs(deltaSpeed);
+      CurrentFuelConsumption -= Math.Abs(deltaSpeed) / 4;
       
       return CurrentCarSpeed;
     }

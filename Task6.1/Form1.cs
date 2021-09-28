@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Windows.Forms;
 using Task6._1.fields;
 using Task6._1.reflection;
-using VehiclesLibrary.model;
 
 namespace Task6._1
 {
@@ -14,7 +13,6 @@ namespace Task6._1
     private readonly ClassFinder _classFinder = new();
     private Type _currentClass;
     private MethodInfo _currentMethod;
-    private IVehicle _currentVehicle;
     private object _currentVehicleObj;
 
     public Form1()
@@ -85,13 +83,8 @@ namespace Task6._1
 
     private void FindSelectedClass()
     {
-      foreach (var classType in _classFinder.ClassesList)
-      {
-        if (classType.Name != (string)comboBoxChoosingClass.SelectedItem) continue;
-        _currentClass = classType;
-        break;
-      }
-      //_currentClass = _classFinder.Assembly.GetType("VehiclesLibrary.model." + (string)comboBoxChoosingClass.SelectedItem);
+      _currentClass = _classFinder.Assembly
+        .GetType("VehiclesLibrary.model." + (string)comboBoxChoosingClass.SelectedItem);
     }
 
     private void FindSelectedMethod()
@@ -193,16 +186,15 @@ namespace Task6._1
 
       if (label8.Visible) return;
 
-      _currentVehicle = _currentClass.Name switch
+      var args = new object[arrayList.Count];
+
+      for (var i = 0; i < arrayList.Count; i++)
       {
-        "Truck" => new Truck((decimal)arrayList[0]),
-        "Motorcycle" => new Motorcycle(),
-        "Tractor" => new Tractor(),
-        _ => _currentVehicle
-      };
-      
-      _currentVehicleObj = Activator.CreateInstance(_currentClass, null);
-      
+        args[i] = arrayList[i];
+      }
+
+      _currentVehicleObj = Activator.CreateInstance(_currentClass, args);
+
       InitializeMethodChooser();
     }
 
@@ -243,6 +235,7 @@ namespace Task6._1
     private void button2_Click(object sender, EventArgs e)
     {
       label4.Visible = true;
+      label7.Visible = false;
 
       var arrayList = new ArrayList();
 
@@ -264,9 +257,16 @@ namespace Task6._1
 
       if (label7.Visible) return;
 
-      var result = _currentMethod.Invoke(_currentVehicleObj, null );
+      var args = new object[arrayList.Count];
 
-      label7.Text = result.ToString();
+      for (var i = 0; i < arrayList.Count; i++)
+      {
+        args[i] = arrayList[i];
+      }
+
+      var result = _currentMethod.Invoke(_currentVehicleObj, args);
+
+      label7.Text = result == null ? "Метод имеет сигнатуру void" : result.ToString();
       label7.Visible = true;
     }
 

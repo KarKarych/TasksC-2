@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using VehiclesLibrary.model;
 
 namespace Task6._1.reflection
 {
@@ -10,6 +9,7 @@ namespace Task6._1.reflection
   {
     private const string LibraryName = "../../../VehiclesLibrary/bin/Debug/VehiclesLibrary.dll";
     private readonly string _path;
+    public Assembly Assembly { get; private set; }
     public IEnumerable<Type> ClassesList { get; }
 
     public ClassFinder()
@@ -29,6 +29,7 @@ namespace Task6._1.reflection
     {
       var types = Assembly.LoadFrom(_path)
         .GetTypes();
+      Assembly = Assembly.LoadFrom(_path);
       var interfaces = types.Where(type => type.IsInterface);
       var interfacesList = interfaces.ToList();
       interfacesList.GetEnumerator().MoveNext();

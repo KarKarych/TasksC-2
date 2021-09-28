@@ -47,9 +47,9 @@
       // 
       // comboBoxChoosingClass
       // 
-      resources.ApplyResources(this.comboBoxChoosingClass, "comboBoxChoosingClass");
       this.comboBoxChoosingClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
       this.comboBoxChoosingClass.FormattingEnabled = true;
+      resources.ApplyResources(this.comboBoxChoosingClass, "comboBoxChoosingClass");
       this.comboBoxChoosingClass.Name = "comboBoxChoosingClass";
       this.comboBoxChoosingClass.SelectedIndexChanged += new System.EventHandler(this.comboBoxСhoosingClass_SelectedIndexChanged);
       // 
@@ -65,8 +65,8 @@
       // 
       // comboBoxChoosingMethod
       // 
-      resources.ApplyResources(this.comboBoxChoosingMethod, "comboBoxChoosingMethod");
       this.comboBoxChoosingMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      resources.ApplyResources(this.comboBoxChoosingMethod, "comboBoxChoosingMethod");
       this.comboBoxChoosingMethod.FormattingEnabled = true;
       this.comboBoxChoosingMethod.Name = "comboBoxChoosingMethod";
       this.comboBoxChoosingMethod.SelectedIndexChanged += new System.EventHandler(this.comboBoxChoosingMethod_SelectedIndexChanged);
@@ -142,6 +142,7 @@
       this.Name = "Form1";
       this.ShowIcon = false;
       this.ResumeLayout(false);
+      this.PerformLayout();
     }
 
     private System.Windows.Forms.Label label8;

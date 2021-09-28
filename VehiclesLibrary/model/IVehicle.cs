@@ -7,7 +7,7 @@ namespace VehiclesLibrary.model
     public GearType CurrentGear { get; }
     public decimal CurrentCarSpeed { get; }
 
-    public void Accelerate(decimal deltaSpeed);
-    public void ReduceSpeed(decimal deltaSpeed);
+    public decimal Accelerate(decimal deltaSpeed);
+    public decimal ReduceSpeed(decimal deltaSpeed);
   }
 }

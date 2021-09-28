@@ -17,46 +17,60 @@ namespace VehiclesLibrary.model
       CurrentDirectionOfMovement = MovementType.StandStill;
     }
 
-    public void Accelerate(decimal deltaSpeed)
+    public decimal Accelerate(decimal deltaSpeed)
     {
       GoAhead();
       CurrentCarSpeed += deltaSpeed;
       CurrentFuelConsumption += deltaSpeed / 4;
+
+      return CurrentCarSpeed;
     }
 
-    public void ReduceSpeed(decimal deltaSpeed)
+    public decimal ReduceSpeed(decimal deltaSpeed)
     {
       GoAhead();
       CurrentCarSpeed -= deltaSpeed;
       CurrentFuelConsumption -= deltaSpeed / 4;
+      
+      return CurrentCarSpeed;
     }
 
-    public void Stop()
+    public GearType Stop()
     {
       CurrentDirectionOfMovement = MovementType.StandStill;
       CurrentGear = GearType.Neutral;
+
+      return CurrentGear;
     }
 
-    public void GoAhead()
+    public GearType GoAhead()
     {
       CurrentDirectionOfMovement = MovementType.Forward;
       CurrentGear = GearType.ForwardRunning;
+      
+      return CurrentGear;
     }
 
-    public void GoBack()
+    public GearType GoBack()
     {
       CurrentDirectionOfMovement = MovementType.Backward;
       CurrentGear = GearType.ReverseGear;
+      
+      return CurrentGear;
     }
 
-    public void TurnLeft()
+    public GearType TurnLeft()
     {
       CurrentDirectionOfMovement = MovementType.Left;
+      
+      return CurrentGear;
     }
 
-    public void TurnRight()
+    public GearType TurnRight()
     {
       CurrentDirectionOfMovement = MovementType.Left;
+      
+      return CurrentGear;
     }
   }
 }

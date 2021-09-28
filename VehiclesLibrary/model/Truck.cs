@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace VehiclesLibrary.model
 {
@@ -22,9 +24,15 @@ namespace VehiclesLibrary.model
       return _truckLoad;
     }
 
-    public Dictionary<string, int> GetAllCargo()
+    public string GetAllCargo()
     {
-      return _cargoInTruck;
+      var stringBuilder = new StringBuilder();
+      foreach (var pair in _cargoInTruck)
+      {
+        stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
+      }
+
+      return stringBuilder.ToString();
     }
 
     public int GetCargoWeightByName(string name)
@@ -34,20 +42,25 @@ namespace VehiclesLibrary.model
 
     public bool AddCargo(string name, int weight)
     {
-      if (!SetTruckLoad(weight))
-      {
+      if (!SetTruckLoad(weight) || _cargoInTruck.ContainsKey(name))
         return false;
-      }
-
+      
       _cargoInTruck.Add(name, weight);
       return true;
     }
 
-    public Dictionary<string, int> UnloadTruck()
+    public string UnloadTruck()
     {
       var pallet = new Dictionary<string, int>(_cargoInTruck);
       _cargoInTruck.Clear();
-      return pallet;
+
+      var stringBuilder = new StringBuilder();
+      foreach (var pair in pallet)
+      {
+        stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
+      }
+
+      return stringBuilder.ToString();
     }
 
     private bool SetTruckLoad(int cargoWeight)

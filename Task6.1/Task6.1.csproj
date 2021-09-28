@@ -101,11 +101,5 @@
   <ItemGroup>
     <Content Include="Task6.1.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VehiclesLibrary\VehiclesLibrary.csproj">
-      <Project>{b11983cd-8185-4100-b1bb-68dadb12609a}</Project>
-      <Name>VehiclesLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

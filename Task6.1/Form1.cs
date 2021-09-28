@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
@@ -84,6 +85,26 @@ namespace Task6._1
       _currentMethod = _currentClass.GetMethod((string)comboBoxChoosingMethod.SelectedItem);
     }
 
+    private static void AddElementsToFlowLayoutPanel(
+      Control flowLayoutPanel, 
+      IEnumerable<ParameterInfo> parameters
+      )
+    {
+      foreach (var parameter in parameters)
+      {
+        var name = $"{parameter.Name} ({parameter.ParameterType.Name})";
+
+        if (parameter.ParameterType == typeof(int))
+          flowLayoutPanel.Controls.Add(new FieldInt(name));
+
+        if (parameter.ParameterType == typeof(string))
+          flowLayoutPanel.Controls.Add(new FieldString(name));
+
+        if (parameter.ParameterType == typeof(decimal))
+          flowLayoutPanel.Controls.Add(new FieldDecimal(name));
+      }
+    }
+
     private void comboBoxСhoosingClass_SelectedIndexChanged(object sender, EventArgs e)
     {
       InputConstructorParameters();
@@ -94,19 +115,7 @@ namespace Task6._1
       if (parameters.Length == 0)
         label1.Text = @"Конструктор класса не имеет параметров";
       else
-        foreach (var parameter in parameters)
-        {
-          var name = $"{parameter.Name} ({parameter.ParameterType.Name})";
-
-          if (parameter.ParameterType == typeof(int))
-            flowLayoutPanel1.Controls.Add(new FieldInt(name));
-
-          if (parameter.ParameterType == typeof(string))
-            flowLayoutPanel1.Controls.Add(new FieldString(name));
-
-          if (parameter.ParameterType == typeof(decimal))
-            flowLayoutPanel1.Controls.Add(new FieldDecimal(name));
-        }
+        AddElementsToFlowLayoutPanel(flowLayoutPanel1, parameters);
     }
 
     private void comboBoxChoosingMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,19 +133,7 @@ namespace Task6._1
       if (parameters.Length == 0)
         label2.Text = @"Метод не имеет параметров";
       else
-        foreach (var parameter in parameters)
-        {
-          var name = $"{parameter.Name} ({parameter.ParameterType.Name})";
-
-          if (parameter.ParameterType == typeof(int))
-            flowLayoutPanel2.Controls.Add(new FieldInt(name));
-
-          if (parameter.ParameterType == typeof(string))
-            flowLayoutPanel2.Controls.Add(new FieldString(name));
-
-          if (parameter.ParameterType == typeof(decimal))
-            flowLayoutPanel2.Controls.Add(new FieldDecimal(name));
-        }
+        AddElementsToFlowLayoutPanel(flowLayoutPanel2, parameters);
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -181,7 +178,7 @@ namespace Task6._1
       {
         case TypeCode.Int32:
           if (int.TryParse(textBox.Text, out var intValue)) return intValue;
-          
+
           break;
         case TypeCode.Decimal:
           if (decimal.TryParse(textBox.Text, out var decimalValue))

@@ -36,42 +36,42 @@ namespace VehiclesLibrary.model
       return CurrentCarSpeed;
     }
 
-    public GearType Stop()
+    public MovementType Stop()
     {
       CurrentDirectionOfMovement = MovementType.StandStill;
       CurrentGear = GearType.Neutral;
 
-      return CurrentGear;
+      return CurrentDirectionOfMovement;
     }
 
-    public GearType GoAhead()
+    public MovementType GoAhead()
     {
       CurrentDirectionOfMovement = MovementType.Forward;
       CurrentGear = GearType.ForwardRunning;
 
-      return CurrentGear;
+      return CurrentDirectionOfMovement;
     }
 
-    public GearType GoBack()
+    public MovementType GoBack()
     {
       CurrentDirectionOfMovement = MovementType.Backward;
       CurrentGear = GearType.ReverseGear;
 
-      return CurrentGear;
+      return CurrentDirectionOfMovement;
     }
 
-    public GearType TurnLeft()
+    public MovementType TurnLeft()
     {
       CurrentDirectionOfMovement = MovementType.Left;
 
-      return CurrentGear;
+      return CurrentDirectionOfMovement;
     }
 
-    public GearType TurnRight()
+    public MovementType TurnRight()
     {
       CurrentDirectionOfMovement = MovementType.Left;
 
-      return CurrentGear;
+      return CurrentDirectionOfMovement;
     }
   }
 }

@@ -86,9 +86,9 @@ namespace Task6._1
     }
 
     private static void AddElementsToFlowLayoutPanel(
-      Control flowLayoutPanel, 
+      Control flowLayoutPanel,
       IEnumerable<ParameterInfo> parameters
-      )
+    )
     {
       foreach (var parameter in parameters)
       {
@@ -139,21 +139,8 @@ namespace Task6._1
     private void button1_Click(object sender, EventArgs e)
     {
       label8.Visible = false;
-      var arrayList = new ArrayList();
-
-      foreach (var field in flowLayoutPanel1.Controls)
-        switch (field)
-        {
-          case FieldInt fieldInt:
-            arrayList.Add(CheckClassInitializer(fieldInt.TextBox, typeof(int)));
-            break;
-          case FieldString fieldString:
-            arrayList.Add(CheckClassInitializer(fieldString.TextBox, typeof(string)));
-            break;
-          case FieldDecimal fieldDecimal:
-            arrayList.Add(CheckClassInitializer(fieldDecimal.TextBox, typeof(decimal)));
-            break;
-        }
+      
+      var arrayList = GetArguments(flowLayoutPanel1, label8);
 
       if (label8.Visible) return;
 
@@ -166,57 +153,12 @@ namespace Task6._1
       InitializeMethodChooser();
     }
 
-    private object CheckClassInitializer(Control textBox, Type type)
-    {
-      if (textBox.Text == "")
-      {
-        label8.Text = @"Какое-то из полей является пустым";
-        label8.Visible = true;
-      }
-
-      switch (Type.GetTypeCode(type))
-      {
-        case TypeCode.Int32:
-          if (int.TryParse(textBox.Text, out var intValue)) return intValue;
-
-          break;
-        case TypeCode.Decimal:
-          if (decimal.TryParse(textBox.Text, out var decimalValue))
-          {
-            return decimalValue;
-          }
-          else
-          {
-            label8.Text = @"Аргументы заданы неверно";
-            label8.Visible = true;
-          }
-
-          break;
-      }
-
-      return textBox.Text;
-    }
-
     private void button2_Click(object sender, EventArgs e)
     {
       label4.Visible = true;
       label7.Visible = false;
 
-      var arrayList = new ArrayList();
-
-      foreach (var field in flowLayoutPanel2.Controls)
-        switch (field)
-        {
-          case FieldInt fieldInt:
-            arrayList.Add(CheckMethodInitializer(fieldInt.TextBox, typeof(int)));
-            break;
-          case FieldString fieldString:
-            arrayList.Add(CheckMethodInitializer(fieldString.TextBox, typeof(string)));
-            break;
-          case FieldDecimal fieldDecimal:
-            arrayList.Add(CheckMethodInitializer(fieldDecimal.TextBox, typeof(decimal)));
-            break;
-        }
+      var arrayList = GetArguments(flowLayoutPanel2, label7);
 
       if (label7.Visible) return;
 
@@ -230,12 +172,33 @@ namespace Task6._1
       label7.Visible = true;
     }
 
-    private object CheckMethodInitializer(Control textBox, Type type)
+    private ArrayList GetArguments(Control flowLayoutPanel, Label label)
+    {
+      var arrayList = new ArrayList();
+      
+      foreach (var field in flowLayoutPanel.Controls)
+        switch (field)
+        {
+          case FieldInt fieldInt:
+            arrayList.Add(CheckInitializer(fieldInt.TextBox, typeof(int), label));
+            break;
+          case FieldString fieldString:
+            arrayList.Add(CheckInitializer(fieldString.TextBox, typeof(string), label));
+            break;
+          case FieldDecimal fieldDecimal:
+            arrayList.Add(CheckInitializer(fieldDecimal.TextBox, typeof(decimal), label));
+            break;
+        }
+
+      return arrayList;
+    }
+
+    private object CheckInitializer(Control textBox, Type type, Label label)
     {
       if (textBox.Text == "")
       {
-        label7.Text = @"Какое-то из полей является пустым";
-        label7.Visible = true;
+        label.Text = @"Какое-то из полей является пустым";
+        label.Visible = true;
       }
 
       switch (Type.GetTypeCode(type))
@@ -251,8 +214,8 @@ namespace Task6._1
           }
           else
           {
-            label7.Text = @"Аргументы заданы неверно";
-            label7.Visible = true;
+            label.Text = @"Аргументы заданы неверно";
+            label.Visible = true;
           }
 
           break;

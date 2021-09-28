@@ -1,7 +1,6 @@
 ﻿namespace VehiclesLibrary.model
 {
-  public class Motorcycle: Car
+  public class Motorcycle : Car
   {
-    
   }
 }

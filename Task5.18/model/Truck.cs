@@ -4,9 +4,8 @@ namespace Task5._18.model
 {
   public class Truck : Car
   {
-    private int _truckLoad;
-
     private readonly Dictionary<string, int> _cargoInTruck;
+    private int _truckLoad;
 
     public Truck(decimal truckCapacity)
     {
@@ -34,10 +33,7 @@ namespace Task5._18.model
 
     public bool AddCargo(string name, int weight)
     {
-      if (!SetTruckLoad(weight))
-      {
-        return false;
-      }
+      if (!SetTruckLoad(weight)) return false;
 
       _cargoInTruck.Add(name, weight);
       return true;
@@ -52,10 +48,7 @@ namespace Task5._18.model
 
     private bool SetTruckLoad(int cargoWeight)
     {
-      if (_truckLoad + cargoWeight > TruckCapacity)
-      {
-        return false;
-      }
+      if (_truckLoad + cargoWeight > TruckCapacity) return false;
 
       _truckLoad += cargoWeight;
       return true;

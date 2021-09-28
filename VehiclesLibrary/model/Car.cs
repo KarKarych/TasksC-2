@@ -5,11 +5,6 @@ namespace VehiclesLibrary.model
 {
   public abstract class Car : IVehicle
   {
-    public GearType CurrentGear { get; private set; }
-    public decimal CurrentCarSpeed { get; private set; }
-    public decimal CurrentFuelConsumption { get; private set; }
-    public MovementType CurrentDirectionOfMovement { get; private set; }
-
     protected Car()
     {
       CurrentFuelConsumption = 0;
@@ -17,6 +12,11 @@ namespace VehiclesLibrary.model
       CurrentCarSpeed = 0;
       CurrentDirectionOfMovement = MovementType.StandStill;
     }
+
+    public decimal CurrentFuelConsumption { get; private set; }
+    public MovementType CurrentDirectionOfMovement { get; private set; }
+    public GearType CurrentGear { get; private set; }
+    public decimal CurrentCarSpeed { get; private set; }
 
     public decimal Accelerate(decimal deltaSpeed)
     {
@@ -32,7 +32,7 @@ namespace VehiclesLibrary.model
       GoAhead();
       CurrentCarSpeed -= Math.Abs(deltaSpeed);
       CurrentFuelConsumption -= Math.Abs(deltaSpeed) / 4;
-      
+
       return CurrentCarSpeed;
     }
 
@@ -48,7 +48,7 @@ namespace VehiclesLibrary.model
     {
       CurrentDirectionOfMovement = MovementType.Forward;
       CurrentGear = GearType.ForwardRunning;
-      
+
       return CurrentGear;
     }
 
@@ -56,21 +56,21 @@ namespace VehiclesLibrary.model
     {
       CurrentDirectionOfMovement = MovementType.Backward;
       CurrentGear = GearType.ReverseGear;
-      
+
       return CurrentGear;
     }
 
     public GearType TurnLeft()
     {
       CurrentDirectionOfMovement = MovementType.Left;
-      
+
       return CurrentGear;
     }
 
     public GearType TurnRight()
     {
       CurrentDirectionOfMovement = MovementType.Left;
-      
+
       return CurrentGear;
     }
   }

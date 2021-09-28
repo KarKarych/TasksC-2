@@ -6,10 +6,7 @@
     {
       TextBox.KeyPress += (_, e) =>
       {
-        if (e.KeyChar != 8 && (e.KeyChar < 48 || e.KeyChar > 57))
-        {
-          e.Handled = true;
-        }
+        if (e.KeyChar != 8 && (e.KeyChar < 48 || e.KeyChar > 57)) e.Handled = true;
       };
     }
   }

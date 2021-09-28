@@ -5,9 +5,8 @@ namespace VehiclesLibrary.model
 {
   public class Truck : Car
   {
-    private int _truckLoad;
-
     private readonly Dictionary<string, int> _cargoInTruck;
+    private int _truckLoad;
 
     public Truck(decimal truckCapacity)
     {
@@ -26,10 +25,7 @@ namespace VehiclesLibrary.model
     public string GetAllCargo()
     {
       var stringBuilder = new StringBuilder();
-      foreach (var pair in _cargoInTruck)
-      {
-        stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
-      }
+      foreach (var pair in _cargoInTruck) stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
 
       return stringBuilder.ToString();
     }
@@ -54,20 +50,14 @@ namespace VehiclesLibrary.model
       _cargoInTruck.Clear();
 
       var stringBuilder = new StringBuilder();
-      foreach (var pair in pallet)
-      {
-        stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
-      }
+      foreach (var pair in pallet) stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
 
       return stringBuilder.ToString();
     }
 
     private bool SetTruckLoad(int cargoWeight)
     {
-      if (_truckLoad + cargoWeight > TruckCapacity)
-      {
-        return false;
-      }
+      if (_truckLoad + cargoWeight > TruckCapacity) return false;
 
       _truckLoad += cargoWeight;
       return true;

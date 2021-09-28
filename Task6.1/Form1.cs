@@ -23,10 +23,7 @@ namespace Task6._1
 
     private void InitializeClassChooser()
     {
-      foreach (var classType in _classFinder.ClassesList)
-      {
-        comboBoxChoosingClass.Items.Add(classType.Name);
-      }
+      foreach (var classType in _classFinder.ClassesList) comboBoxChoosingClass.Items.Add(classType.Name);
     }
 
     private void InitializeMethodChooser()
@@ -38,13 +35,9 @@ namespace Task6._1
       var parameters = _currentClass
         .GetMethods();
 
-      foreach (var parameter in parameters)
-      {
-        comboBoxChoosingMethod.Items.Add(parameter.Name);
-      }
+      foreach (var parameter in parameters) comboBoxChoosingMethod.Items.Add(parameter.Name);
 
       foreach (var field in flowLayoutPanel1.Controls)
-      {
         switch (field)
         {
           case FieldInt fieldInt:
@@ -57,7 +50,6 @@ namespace Task6._1
             fieldDecimal.Enabled = false;
             break;
         }
-      }
 
       button1.Enabled = false;
     }
@@ -100,29 +92,21 @@ namespace Task6._1
       var parameters = _currentClass.GetConstructors()[0].GetParameters();
 
       if (parameters.Length == 0)
-      {
         label1.Text = @"Конструктор класса не имеет параметров";
-      }
       else
-      {
         foreach (var parameter in parameters)
         {
+          var name = $"{parameter.Name} ({parameter.ParameterType.Name})";
+
           if (parameter.ParameterType == typeof(int))
-          {
-            flowLayoutPanel1.Controls.Add(new FieldInt($"{parameter.Name} ({parameter.ParameterType.Name})"));
-          }
+            flowLayoutPanel1.Controls.Add(new FieldInt(name));
 
           if (parameter.ParameterType == typeof(string))
-          {
-            flowLayoutPanel1.Controls.Add(new FieldString($"{parameter.Name} ({parameter.ParameterType.Name})"));
-          }
+            flowLayoutPanel1.Controls.Add(new FieldString(name));
 
           if (parameter.ParameterType == typeof(decimal))
-          {
-            flowLayoutPanel1.Controls.Add(new FieldDecimal($"{parameter.Name} ({parameter.ParameterType.Name})"));
-          }
+            flowLayoutPanel1.Controls.Add(new FieldDecimal(name));
         }
-      }
     }
 
     private void comboBoxChoosingMethod_SelectedIndexChanged(object sender, EventArgs e)
@@ -138,29 +122,21 @@ namespace Task6._1
       var parameters = _currentMethod.GetParameters();
 
       if (parameters.Length == 0)
-      {
         label2.Text = @"Метод не имеет параметров";
-      }
       else
-      {
         foreach (var parameter in parameters)
         {
+          var name = $"{parameter.Name} ({parameter.ParameterType.Name})";
+
           if (parameter.ParameterType == typeof(int))
-          {
-            flowLayoutPanel2.Controls.Add(new FieldInt($"{parameter.Name} ({parameter.ParameterType.Name})"));
-          }
+            flowLayoutPanel2.Controls.Add(new FieldInt(name));
 
           if (parameter.ParameterType == typeof(string))
-          {
-            flowLayoutPanel2.Controls.Add(new FieldString($"{parameter.Name} ({parameter.ParameterType.Name})"));
-          }
+            flowLayoutPanel2.Controls.Add(new FieldString(name));
 
           if (parameter.ParameterType == typeof(decimal))
-          {
-            flowLayoutPanel2.Controls.Add(new FieldDecimal($"{parameter.Name} ({parameter.ParameterType.Name})"));
-          }
+            flowLayoutPanel2.Controls.Add(new FieldDecimal(name));
         }
-      }
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -169,7 +145,6 @@ namespace Task6._1
       var arrayList = new ArrayList();
 
       foreach (var field in flowLayoutPanel1.Controls)
-      {
         switch (field)
         {
           case FieldInt fieldInt:
@@ -182,16 +157,12 @@ namespace Task6._1
             arrayList.Add(CheckClassInitializer(fieldDecimal.TextBox, typeof(decimal)));
             break;
         }
-      }
 
       if (label8.Visible) return;
 
       var args = new object[arrayList.Count];
 
-      for (var i = 0; i < arrayList.Count; i++)
-      {
-        args[i] = arrayList[i];
-      }
+      for (var i = 0; i < arrayList.Count; i++) args[i] = arrayList[i];
 
       _currentVehicleObj = Activator.CreateInstance(_currentClass, args);
 
@@ -209,11 +180,8 @@ namespace Task6._1
       switch (Type.GetTypeCode(type))
       {
         case TypeCode.Int32:
-          if (int.TryParse(textBox.Text, out var intValue))
-          {
-            return intValue;
-          }
-
+          if (int.TryParse(textBox.Text, out var intValue)) return intValue;
+          
           break;
         case TypeCode.Decimal:
           if (decimal.TryParse(textBox.Text, out var decimalValue))
@@ -240,7 +208,6 @@ namespace Task6._1
       var arrayList = new ArrayList();
 
       foreach (var field in flowLayoutPanel2.Controls)
-      {
         switch (field)
         {
           case FieldInt fieldInt:
@@ -253,19 +220,15 @@ namespace Task6._1
             arrayList.Add(CheckMethodInitializer(fieldDecimal.TextBox, typeof(decimal)));
             break;
         }
-      }
 
       if (label7.Visible) return;
 
       var args = new object[arrayList.Count];
 
-      for (var i = 0; i < arrayList.Count; i++)
-      {
-        args[i] = arrayList[i];
-      }
+      for (var i = 0; i < arrayList.Count; i++) args[i] = arrayList[i];
 
       var result = _currentMethod.Invoke(_currentVehicleObj, args);
-      
+
       label7.Text = result == null ? "Метод имеет сигнатуру void" : result.ToString();
       label7.Visible = true;
     }
@@ -281,10 +244,7 @@ namespace Task6._1
       switch (Type.GetTypeCode(type))
       {
         case TypeCode.Int32:
-          if (int.TryParse(textBox.Text, out var intValue))
-          {
-            return intValue;
-          }
+          if (int.TryParse(textBox.Text, out var intValue)) return intValue;
 
           break;
         case TypeCode.Decimal:

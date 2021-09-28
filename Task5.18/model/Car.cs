@@ -1,15 +1,9 @@
-﻿using System;
-using Task5._18.model.enums;
+﻿using Task5._18.model.enums;
 
 namespace Task5._18.model
 {
   public abstract class Car : IVehicle
   {
-    public GearType CurrentGear { get; private set; }
-    public decimal CurrentCarSpeed { get; private set; }
-    public decimal CurrentFuelConsumption { get; private set; }
-    public MovementType CurrentDirectionOfMovement { get; private set; }
-
     protected Car()
     {
       CurrentFuelConsumption = 0;
@@ -17,6 +11,11 @@ namespace Task5._18.model
       CurrentCarSpeed = 0;
       CurrentDirectionOfMovement = MovementType.StandStill;
     }
+
+    public decimal CurrentFuelConsumption { get; private set; }
+    public MovementType CurrentDirectionOfMovement { get; private set; }
+    public GearType CurrentGear { get; private set; }
+    public decimal CurrentCarSpeed { get; private set; }
 
     public void Accelerate(decimal deltaSpeed)
     {

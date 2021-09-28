@@ -6,15 +6,15 @@ using static System.Int32;
 
 namespace Task5._18
 {
-  class Program
+  internal class Program
   {
-    static void Main()
+    private static void Main()
     {
       IList trucks = new ArrayList();
       MainMenu(trucks);
     }
 
-    static void MainMenu(IList trucks)
+    private static void MainMenu(IList trucks)
     {
       var exit = false;
 
@@ -67,10 +67,7 @@ namespace Task5._18
               GetInformationAboutTruck((Truck)trucks[number]);
               break;
             case 5:
-              foreach (var truck in trucks)
-              {
-                GetInformationAboutTruck((Truck)truck);
-              }
+              foreach (var truck in trucks) GetInformationAboutTruck((Truck)truck);
               break;
             case 6:
               exit = true;
@@ -145,6 +142,7 @@ namespace Task5._18
                 if (result)
                   truck.Accelerate(speed);
               } while (!result);
+
               break;
             case 9:
               do
@@ -154,6 +152,7 @@ namespace Task5._18
                 if (result)
                   truck.ReduceSpeed(speed);
               } while (!result);
+
               break;
             case 10:
               exit = true;
@@ -195,10 +194,7 @@ namespace Task5._18
     {
       Console.WriteLine("Truck cargo:");
 
-      foreach (var (key, value) in cargo)
-      {
-        Console.WriteLine($"{key} {value}");
-      }
+      foreach (var (key, value) in cargo) Console.WriteLine($"{key} {value}");
 
       Console.WriteLine();
     }

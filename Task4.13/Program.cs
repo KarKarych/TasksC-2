@@ -9,7 +9,7 @@ namespace Task4._13
     {
       int number;
       bool result;
-      
+
       do
       {
         Console.WriteLine("Choose class:" +

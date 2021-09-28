@@ -5,8 +5,6 @@ namespace Task6._1.fields
 {
   internal class Field : FlowLayoutPanel
   {
-    public TextBox TextBox { get; }
-
     public Field(string labelText)
     {
       AutoSize = true;
@@ -18,10 +16,12 @@ namespace Task6._1.fields
 
       TextBox = new TextBox();
       TextBox.MinimumSize = new Size(120, 30);
-      
+
       Controls.Add(label);
       Controls.Add(TextBox);
     }
+
+    public TextBox TextBox { get; }
 
     public sealed override bool AutoSize
     {

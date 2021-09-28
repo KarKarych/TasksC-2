@@ -9,8 +9,6 @@ namespace Task6._1.reflection
   {
     private const string LibraryName = "../../../VehiclesLibrary/bin/Debug/VehiclesLibrary.dll";
     private readonly string _path;
-    public Assembly Assembly { get; private set; }
-    public IEnumerable<Type> ClassesList { get; }
 
     public ClassFinder()
     {
@@ -18,7 +16,10 @@ namespace Task6._1.reflection
       ClassesList = ClassesImplementingInterface();
     }
 
-    private bool IsRealClass(Type testType)
+    public Assembly Assembly { get; private set; }
+    public IEnumerable<Type> ClassesList { get; }
+
+    private static bool IsRealClass(Type testType)
     {
       return testType.IsAbstract == false
              && testType.IsGenericTypeDefinition == false
@@ -34,7 +35,7 @@ namespace Task6._1.reflection
       var interfacesList = interfaces.ToList();
       interfacesList.GetEnumerator().MoveNext();
       var mainInterface = interfacesList[0];
-      
+
       return types
         .Where(type => type.GetInterfaces().Contains(mainInterface))
         .Where(IsRealClass);

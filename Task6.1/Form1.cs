@@ -24,7 +24,8 @@ namespace Task6._1
 
     private void InitializeClassChooser()
     {
-      foreach (var classType in _classFinder.ClassesList) comboBoxChoosingClass.Items.Add(classType.Name);
+      foreach (var classType in _classFinder.ClassesList)
+        comboBoxChoosingClass.Items.Add(classType.Name);
     }
 
     private void InitializeMethodChooser()
@@ -77,12 +78,12 @@ namespace Task6._1
     private void FindSelectedClass()
     {
       _currentClass = _classFinder.Assembly
-        .GetType("VehiclesLibrary.model." + (string)comboBoxChoosingClass.SelectedItem);
+        .GetType("VehiclesLibrary.model." + (string) comboBoxChoosingClass.SelectedItem);
     }
 
     private void FindSelectedMethod()
     {
-      _currentMethod = _currentClass.GetMethod((string)comboBoxChoosingMethod.SelectedItem);
+      _currentMethod = _currentClass.GetMethod((string) comboBoxChoosingMethod.SelectedItem);
     }
 
     private static void AddElementsToFlowLayoutPanel(
@@ -139,7 +140,7 @@ namespace Task6._1
     private void button1_Click(object sender, EventArgs e)
     {
       label8.Visible = false;
-      
+
       var arrayList = GetArguments(flowLayoutPanel1, label8);
 
       if (label8.Visible) return;
@@ -155,8 +156,8 @@ namespace Task6._1
 
     private void button2_Click(object sender, EventArgs e)
     {
-      label4.Visible = true;
       label7.Visible = false;
+      label4.Visible = true;
 
       var arrayList = GetArguments(flowLayoutPanel2, label7);
 
@@ -175,7 +176,7 @@ namespace Task6._1
     private ArrayList GetArguments(Control flowLayoutPanel, Label label)
     {
       var arrayList = new ArrayList();
-      
+
       foreach (var field in flowLayoutPanel.Controls)
         switch (field)
         {

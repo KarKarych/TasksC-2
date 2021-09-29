@@ -5,22 +5,16 @@ namespace VehiclesLibrary.model
 {
   public class Truck : Car
   {
-    private readonly Dictionary<string, int> _cargoInTruck;
-    private int _truckLoad;
-
-    public Truck(decimal truckCapacity)
+    public Truck(decimal truckCapacity, decimal maxSpeed) : base(maxSpeed)
     {
       TruckCapacity = truckCapacity;
+      TruckLoad = 0;
       _cargoInTruck = new Dictionary<string, int>();
-      _truckLoad = 0;
     }
 
+    private readonly Dictionary<string, int> _cargoInTruck;
+    public int TruckLoad { get; private set; }
     public decimal TruckCapacity { get; }
-
-    public int GetTruckLoad()
-    {
-      return _truckLoad;
-    }
 
     public string GetAllCargo()
     {
@@ -57,9 +51,9 @@ namespace VehiclesLibrary.model
 
     private bool SetTruckLoad(int cargoWeight)
     {
-      if (_truckLoad + cargoWeight > TruckCapacity) return false;
+      if (TruckLoad + cargoWeight > TruckCapacity) return false;
 
-      _truckLoad += cargoWeight;
+      TruckLoad += cargoWeight;
       return true;
     }
   }

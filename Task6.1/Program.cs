@@ -15,7 +15,7 @@ namespace Task6._1
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
       var form1 = new Form1();
-      form1.Size = new Size(1280, 960);
+      form1.Size = new Size(1280, 760);
       Application.Run(form1);
     }
   }

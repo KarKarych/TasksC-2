@@ -55,6 +55,7 @@
         <Compile Include="fields\FieldDecimal.cs">
             <SubType>Component</SubType>
         </Compile>
+        <Compile Include="fields\FieldEnum.cs" />
         <Compile Include="fields\FieldInt.cs">
             <SubType>Component</SubType>
         </Compile>

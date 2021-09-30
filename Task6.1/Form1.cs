@@ -78,12 +78,12 @@ namespace Task6._1
     private void FindSelectedClass()
     {
       _currentClass = _classFinder.Assembly
-        .GetType("VehiclesLibrary.model." + (string) comboBoxChoosingClass.SelectedItem);
+        .GetType("VehiclesLibrary.model." + (string)comboBoxChoosingClass.SelectedItem);
     }
 
     private void FindSelectedMethod()
     {
-      _currentMethod = _currentClass.GetMethod((string) comboBoxChoosingMethod.SelectedItem);
+      _currentMethod = _currentClass.GetMethod((string)comboBoxChoosingMethod.SelectedItem);
     }
 
     private static void AddElementsToFlowLayoutPanel(
@@ -103,6 +103,22 @@ namespace Task6._1
 
         if (parameter.ParameterType == typeof(decimal))
           flowLayoutPanel.Controls.Add(new FieldDecimal(name));
+
+        if (parameter.ParameterType.IsEnum)
+        {
+          var fieldEnum = new FieldEnum(parameter.Name);
+          foreach (var nameEnumAttribute in
+            parameter.ParameterType.GetFields())
+          {
+            var length = parameter.ParameterType.GetFields().Length;
+            if (nameEnumAttribute.Name == "value__") continue;
+            if (nameEnumAttribute == parameter.ParameterType.GetFields()[length - 1]) continue;
+
+            fieldEnum.ComboBox.Items.Add(nameEnumAttribute.Name);
+          }
+
+          flowLayoutPanel.Controls.Add(fieldEnum);
+        }
       }
     }
 
@@ -169,7 +185,7 @@ namespace Task6._1
 
       var result = _currentMethod.Invoke(_currentVehicleObj, args);
 
-      label7.Text = result == null ? "Метод имеет сигнатуру void" : result.ToString();
+      label7.Text = result == null ? @"Метод имеет сигнатуру void" : result.ToString();
       label7.Visible = true;
     }
 
@@ -189,9 +205,18 @@ namespace Task6._1
           case FieldDecimal fieldDecimal:
             arrayList.Add(CheckInitializer(fieldDecimal.TextBox, typeof(decimal), label));
             break;
+          case FieldEnum fieldEnum:
+            arrayList.Add(CheckInitializer(fieldEnum.ComboBox));
+            break;
         }
 
       return arrayList;
+    }
+
+    private object CheckInitializer(ComboBox fieldEnumComboBox)
+    {
+      return Convert.ChangeType(fieldEnumComboBox.SelectedIndex, 
+        Enum.GetUnderlyingType(_currentMethod.GetParameters()[0].ParameterType));
     }
 
     private object CheckInitializer(Control textBox, Type type, Label label)

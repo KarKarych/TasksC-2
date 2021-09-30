@@ -17,18 +17,10 @@ namespace VehiclesLibrary.model
       return _trailerAttachment;
     }
 
-    public TractorTrailerAttachment SetTrailerAttachment(string newTrailerAttachment)
+    public string SetTrailerAttachment(TractorTrailerAttachment trailerAttachment)
     {
-      var result = Enum.TryParse(
-        newTrailerAttachment,
-        out TractorTrailerAttachment outTrailerAttachment
-      );
-
-      if (!(result && Enum.IsDefined(typeof(TractorTrailerAttachment), outTrailerAttachment)))
-        return TractorTrailerAttachment.WithoutEquipment;
-
-      _trailerAttachment = outTrailerAttachment;
-      return _trailerAttachment;
+      _trailerAttachment = trailerAttachment;
+      return $"Оборудование {_trailerAttachment} поставлено";
     }
   }
 }

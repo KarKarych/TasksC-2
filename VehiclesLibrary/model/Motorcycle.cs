@@ -17,15 +17,10 @@ namespace VehiclesLibrary.model
       return _motorcycleTrick;
     }
 
-    public MotorcycleTrick SetMotorcycleTrick(string motorcycleTrick)
+    public string SetMotorcycleTrick(MotorcycleTrick motorcycleTrick)
     {
-      var result = Enum.TryParse(motorcycleTrick, out MotorcycleTrick outMotorcycleTrick);
-
-      if (!(result && Enum.IsDefined(typeof(MotorcycleTrick), outMotorcycleTrick)))
-        return MotorcycleTrick.NoTrick;
-
-      _motorcycleTrick = outMotorcycleTrick;
-      return _motorcycleTrick;
+      _motorcycleTrick = motorcycleTrick;
+      return @"Трюк успешно совершён";
     }
   }
 }

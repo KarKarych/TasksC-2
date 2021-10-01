@@ -1,16 +1,15 @@
-﻿using System;
-using VehiclesLibrary.model.enums;
+﻿using VehiclesLibrary.model.enums;
 
 namespace VehiclesLibrary.model
 {
   public class Tractor : Car
   {
+    private TractorTrailerAttachment _trailerAttachment;
+
     public Tractor(decimal maxSpeed) : base(maxSpeed)
     {
       _trailerAttachment = TractorTrailerAttachment.WithoutEquipment;
     }
-
-    private TractorTrailerAttachment _trailerAttachment;
 
     public TractorTrailerAttachment GetTrailerAttachment()
     {

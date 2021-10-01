@@ -1,5 +1,4 @@
-﻿using System;
-using VehiclesLibrary.model.enums;
+﻿using VehiclesLibrary.model.enums;
 
 namespace VehiclesLibrary.model
 {

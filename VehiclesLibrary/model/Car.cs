@@ -1,5 +1,4 @@
-﻿using System;
-using VehiclesLibrary.model.enums;
+﻿using VehiclesLibrary.model.enums;
 
 namespace VehiclesLibrary.model
 {
@@ -17,35 +16,21 @@ namespace VehiclesLibrary.model
 
     public decimal CurrentFuelConsumption { get; private set; }
     public MovementType CurrentDirectionOfMovement { get; private set; }
-    public GearType CurrentGear { get; private set; }
-    public decimal MaxSpeed { get; private set; }
-    public decimal CurrentCarSpeed { get; private set; }
+    public decimal MaxSpeed { get; }
     private bool IsActive { get; set; }
-
-    public bool StartEngine()
-    {
-      IsActive = true;
-      return IsActive;
-    }
-
-    public bool StopEngine()
-    {
-      IsActive = false;
-      return IsActive;
-    }
+    public GearType CurrentGear { get; private set; }
+    public decimal CurrentCarSpeed { get; private set; }
 
     public string Accelerate(decimal deltaSpeed)
     {
       if (!IsActive || CurrentDirectionOfMovement == MovementType.StandStill)
-      {
-        return @"Машина не заведена или стоит на нейтральной передаче";
-      }
-      
+        return @"Транспортное средство не заведено или находится на нейтральной передаче";
+
       GoAhead();
       if (CurrentCarSpeed + deltaSpeed < MaxSpeed)
       {
         CurrentCarSpeed += deltaSpeed;
-        CurrentFuelConsumption +=deltaSpeed / 4;
+        CurrentFuelConsumption += deltaSpeed / 4;
       }
       else
       {
@@ -53,16 +38,15 @@ namespace VehiclesLibrary.model
         CurrentCarSpeed = MaxSpeed;
       }
 
-      return @"Разгон успешно выполнен";;
+      return @"Увеличение скорости успешно выполнено";
+      ;
     }
 
     public string ReduceSpeed(decimal deltaSpeed)
     {
-      if (!IsActive || (CurrentGear == GearType.Neutral))
-      {
-        return @"Машина не заведена или стоит на нейтральной передаче";
-      }
-      
+      if (!IsActive || CurrentGear == GearType.Neutral)
+        return @"Транспортное средство не заведено или находится на нейтральной передаче";
+
       GoAhead();
       if (CurrentCarSpeed - deltaSpeed > 0)
       {
@@ -77,6 +61,18 @@ namespace VehiclesLibrary.model
 
 
       return @"Торможение успешно выполнено";
+    }
+
+    public bool StartEngine()
+    {
+      IsActive = true;
+      return IsActive;
+    }
+
+    public bool StopEngine()
+    {
+      IsActive = false;
+      return IsActive;
     }
 
     public MovementType Stop()

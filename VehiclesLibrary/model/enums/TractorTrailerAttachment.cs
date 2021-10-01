@@ -2,13 +2,13 @@
 {
   public enum TractorTrailerAttachment
   {
-    Aerator, 
+    Aerator,
     Rakes,
     ChainMower,
     Plow,
     SoilCutter,
     Cultivator,
-    Deflector, 
+    Deflector,
     WithoutEquipment
   }
 }

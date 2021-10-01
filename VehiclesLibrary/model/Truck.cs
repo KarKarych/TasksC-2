@@ -5,6 +5,8 @@ namespace VehiclesLibrary.model
 {
   public class Truck : Car
   {
+    private readonly Dictionary<string, int> _cargoInTruck;
+
     public Truck(decimal truckCapacity, decimal maxSpeed) : base(maxSpeed)
     {
       TruckCapacity = truckCapacity;
@@ -12,7 +14,6 @@ namespace VehiclesLibrary.model
       _cargoInTruck = new Dictionary<string, int>();
     }
 
-    private readonly Dictionary<string, int> _cargoInTruck;
     public int TruckLoad { get; private set; }
     public decimal TruckCapacity { get; }
 

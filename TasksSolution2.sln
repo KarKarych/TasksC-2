@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task5.18", "Task5.18\Task5.18.csproj", "{0E6164EB-4396-411A-83B5-E4C794101358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task2.2", "Task2.2\Task2.2.csproj", "{0E6164EB-4396-411A-83B5-E4C794101358}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task4.13", "Task4.13\Task4.13.csproj", "{D009A8A9-6111-41E3-AB80-0ADADF32769A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task2.1", "Task2.1\Task2.1.csproj", "{D009A8A9-6111-41E3-AB80-0ADADF32769A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task6.1", "Task6.1\Task6.1.csproj", "{98C31279-3F9E-43D5-9E7E-061254B4EBC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.1", "Task3.1\Task3.1.csproj", "{98C31279-3F9E-43D5-9E7E-061254B4EBC2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehiclesLibrary", "VehiclesLibrary\VehiclesLibrary.csproj", "{B11983CD-8185-4100-B1BB-68DADB12609A}"
 EndProject

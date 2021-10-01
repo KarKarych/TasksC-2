@@ -4,6 +4,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <RootNamespace>Task2._1</RootNamespace>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
 </Project>

@@ -2,8 +2,8 @@
 {
   public enum GearType
   {
-    ForwardRunning,
+    Drive,
     Neutral,
-    ReverseGear
+    Reverse
   }
 }

@@ -20,7 +20,7 @@ namespace VehiclesLibrary.model
     public string GetAllCargo()
     {
       if (_cargoInTruck.Count == 0) return "Грузовик пуст";
-      
+
       var stringBuilder = new StringBuilder();
       stringBuilder.Append("Грузы, находящиеся в кузове:\n");
       foreach (var pair in _cargoInTruck) stringBuilder.Append($"Груз: {pair.Key}. Вес: {pair.Value}\n");
@@ -48,7 +48,7 @@ namespace VehiclesLibrary.model
     {
       var pallet = new Dictionary<string, int>(_cargoInTruck);
       _cargoInTruck.Clear();
-      
+
       if (pallet.Count == 0) return "Грузовик пуст";
 
       var stringBuilder = new StringBuilder();

@@ -91,7 +91,10 @@ namespace Task2._2
                           "7. Unload truck\n" +
                           "8. Accelerate\n" +
                           "9. Reduce speed\n" +
-                          "10. Exit\n" +
+                          "10. Get cargo weight by name\n" +
+                          "11. Start engine\n" +
+                          "12. Stop engine\n" +
+                          "13. Exit\n" +
                           "---------------------------------------\n");
         if (TryParse(Console.ReadLine(), out var choice))
           switch (choice)
@@ -124,11 +127,8 @@ namespace Task2._2
                 var name = Console.ReadLine();
                 result = TryParse(Console.ReadLine(), out var weight);
                 if (result)
-                  Console.WriteLine(truck.AddCargo(name, weight)
-                    ? "Cargo is loaded"
-                    : "Size of cargo is too large or name of cargo already exists");
+                  Console.WriteLine(truck.AddCargo(name, weight));
               } while (!result);
-
 
               break;
             case 7:
@@ -141,7 +141,7 @@ namespace Task2._2
                 Console.WriteLine("Enter speed for accelerate");
                 result = decimal.TryParse(Console.ReadLine(), out var speed);
                 if (result)
-                  truck.Accelerate(speed);
+                  Console.WriteLine(truck.Accelerate(speed));
               } while (!result);
 
               break;
@@ -151,11 +151,33 @@ namespace Task2._2
                 Console.WriteLine("Enter reduce speed");
                 result = decimal.TryParse(Console.ReadLine(), out var speed);
                 if (result)
-                  truck.ReduceSpeed(speed);
+                  Console.WriteLine(truck.ReduceSpeed(speed));
               } while (!result);
 
               break;
             case 10:
+              Console.WriteLine("Enter cargo name");
+              var cargoName = Console.ReadLine() ?? string.Empty;
+              if (cargoName != string.Empty)
+                Console.WriteLine(truck.GetCargoWeightByName(cargoName));
+
+              break;
+            case 11:
+              if (truck.StartEngine())
+              {
+                Console.WriteLine("Engine is started");
+              }
+
+              break;
+            case 12:
+              truck.StartEngine();
+              if (!truck.StopEngine())
+              {
+                Console.WriteLine("Engine is off");
+              }
+
+              break;
+            case 13:
               exit = true;
               break;
           }
@@ -169,12 +191,13 @@ namespace Task2._2
 
       do
       {
-        Console.WriteLine("Enter truck capacity");
+        Console.WriteLine("Enter truck capacity and max speed (line by line)");
 
         result = decimal.TryParse(Console.ReadLine(), out var truckCapacity);
+        result &= decimal.TryParse(Console.ReadLine(), out var maxSpeed);
 
         if (result)
-          truck = new Truck(truckCapacity);
+          truck = new Truck(truckCapacity, maxSpeed);
       } while (!result);
 
       return truck;
@@ -187,6 +210,7 @@ namespace Task2._2
       Console.WriteLine($"Truck direction: {truck.CurrentDirectionOfMovement}");
       Console.WriteLine($"Truck gear: {truck.CurrentGear}");
       Console.WriteLine($"Truck speed: {truck.CurrentCarSpeed}");
+      Console.WriteLine($"Truck speed: {truck.MaxSpeed}");
       Console.WriteLine($"Truck fuel consumption: {truck.CurrentFuelConsumption}");
       Console.WriteLine(truck.GetAllCargo());
     }

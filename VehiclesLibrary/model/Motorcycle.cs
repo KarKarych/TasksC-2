@@ -18,6 +18,11 @@ namespace VehiclesLibrary.model
 
     public string SetMotorcycleTrick(MotorcycleTrick motorcycleTrick)
     {
+      if (motorcycleTrick == (MotorcycleTrick)(-1))
+      {
+        return @"Данного трюка не существует. Выберите существующий";
+      }
+      
       _motorcycleTrick = motorcycleTrick;
       return @"Трюк успешно совершён";
     }

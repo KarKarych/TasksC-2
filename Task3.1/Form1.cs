@@ -78,12 +78,12 @@ namespace Task3._1
     private void FindSelectedClass()
     {
       _currentClass = _classFinder.Assembly
-        .GetType("VehiclesLibrary.model." + (string) comboBoxChoosingClass.SelectedItem);
+        .GetType("VehiclesLibrary.model." + (string)comboBoxChoosingClass.SelectedItem);
     }
 
     private void FindSelectedMethod()
     {
-      _currentMethod = _currentClass.GetMethod((string) comboBoxChoosingMethod.SelectedItem);
+      _currentMethod = _currentClass.GetMethod((string)comboBoxChoosingMethod.SelectedItem);
     }
 
     private static void AddElementsToFlowLayoutPanel(
@@ -215,11 +215,13 @@ namespace Task3._1
 
     private object CheckInitializer(ComboBox fieldEnumComboBox)
     {
-      return Convert.ChangeType(fieldEnumComboBox.SelectedIndex,
+      var enumType = Convert.ChangeType(fieldEnumComboBox.SelectedIndex,
         Enum.GetUnderlyingType(_currentMethod.GetParameters()[0].ParameterType));
+      
+      return enumType;
     }
 
-    private object CheckInitializer(Control textBox, Type type, Label label)
+    private object CheckInitializer(Control textBox, Type type, Control label)
     {
       if (textBox.Text == "")
       {

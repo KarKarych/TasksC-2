@@ -18,6 +18,10 @@ namespace VehiclesLibrary.model
 
     public string SetTrailerAttachment(TractorTrailerAttachment trailerAttachment)
     {
+      if (trailerAttachment == (TractorTrailerAttachment)(-1))
+      {
+        return @"Данного оборудования не существует. Выберите существующее оборудование";
+      }
       _trailerAttachment = trailerAttachment;
       return $"Оборудование {_trailerAttachment} поставлено";
     }

@@ -7,7 +7,7 @@ namespace Task2._2.model
     public GearType CurrentGear { get; }
     public decimal CurrentCarSpeed { get; }
 
-    public void Accelerate(decimal deltaSpeed);
-    public void ReduceSpeed(decimal deltaSpeed);
+    public string Accelerate(decimal deltaSpeed);
+    public string ReduceSpeed(decimal deltaSpeed);
   }
 }

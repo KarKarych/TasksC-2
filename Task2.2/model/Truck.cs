@@ -1,56 +1,60 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 namespace Task2._2.model
 {
   public class Truck : Car
   {
     private readonly Dictionary<string, int> _cargoInTruck;
-    private int _truckLoad;
 
     public Truck(decimal truckCapacity)
     {
       TruckCapacity = truckCapacity;
+      TruckLoad = 0;
       _cargoInTruck = new Dictionary<string, int>();
-      _truckLoad = 0;
     }
 
+    public int TruckLoad { get; private set; }
     public decimal TruckCapacity { get; }
 
-    public int GetTruckLoad()
+    public string GetAllCargo()
     {
-      return _truckLoad;
-    }
+      var stringBuilder = new StringBuilder();
+      foreach (var pair in _cargoInTruck) stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
 
-    public Dictionary<string, int> GetAllCargo()
-    {
-      return _cargoInTruck;
+      return stringBuilder.ToString();
     }
 
     public int GetCargoWeightByName(string name)
     {
-      return _cargoInTruck[name];
+      return _cargoInTruck.ContainsKey(name) ? _cargoInTruck[name] : 0;
     }
 
     public bool AddCargo(string name, int weight)
     {
-      if (!SetTruckLoad(weight)) return false;
+      if (!SetTruckLoad(weight) || _cargoInTruck.ContainsKey(name))
+        return false;
 
       _cargoInTruck.Add(name, weight);
       return true;
     }
 
-    public Dictionary<string, int> UnloadTruck()
+    public string UnloadTruck()
     {
       var pallet = new Dictionary<string, int>(_cargoInTruck);
       _cargoInTruck.Clear();
-      return pallet;
+
+      var stringBuilder = new StringBuilder();
+      foreach (var pair in pallet) stringBuilder.Append($"{pair.Key} – {pair.Value}\n");
+
+      return stringBuilder.ToString();
     }
 
     private bool SetTruckLoad(int cargoWeight)
     {
-      if (_truckLoad + cargoWeight > TruckCapacity) return false;
+      if (TruckLoad + cargoWeight > TruckCapacity) return false;
 
-      _truckLoad += cargoWeight;
+      TruckLoad += cargoWeight;
       return true;
     }
   }

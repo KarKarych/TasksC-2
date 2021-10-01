@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using Task2._2.model;
 using static System.Int32;
 
 namespace Task2._2
 {
-  internal class Program
+  internal static class Program
   {
     private static void Main()
     {
@@ -54,7 +53,7 @@ namespace Task2._2
                 break;
               }
 
-              DriveTruckMenu((Truck) trucks[number]);
+              DriveTruckMenu((Truck)trucks[number]);
               break;
             case 4:
               number = SelectTruck(trucks.Count);
@@ -64,10 +63,10 @@ namespace Task2._2
                 break;
               }
 
-              GetInformationAboutTruck((Truck) trucks[number]);
+              GetInformationAboutTruck((Truck)trucks[number]);
               break;
             case 5:
-              foreach (var truck in trucks) GetInformationAboutTruck((Truck) truck);
+              foreach (var truck in trucks) GetInformationAboutTruck((Truck)truck);
               break;
             case 6:
               exit = true;
@@ -125,14 +124,16 @@ namespace Task2._2
                 var name = Console.ReadLine();
                 result = TryParse(Console.ReadLine(), out var weight);
                 if (result)
-                  truck.AddCargo(name, weight);
+                  Console.WriteLine(truck.AddCargo(name, weight)
+                    ? "Cargo is loaded"
+                    : "Size of cargo is too large or name of cargo already exists");
               } while (!result);
 
-              Console.WriteLine("Cargo is loaded");
+
               break;
             case 7:
               var cargo = truck.UnloadTruck();
-              ShowCargo(cargo);
+              Console.WriteLine(cargo);
               break;
             case 8:
               do
@@ -182,21 +183,12 @@ namespace Task2._2
     private static void GetInformationAboutTruck(Truck truck)
     {
       Console.WriteLine($"\nTruck capacity: {truck.TruckCapacity}");
-      Console.WriteLine($"Truck load: {truck.GetTruckLoad()}");
+      Console.WriteLine($"Truck load: {truck.TruckLoad}");
       Console.WriteLine($"Truck direction: {truck.CurrentDirectionOfMovement}");
       Console.WriteLine($"Truck gear: {truck.CurrentGear}");
       Console.WriteLine($"Truck speed: {truck.CurrentCarSpeed}");
       Console.WriteLine($"Truck fuel consumption: {truck.CurrentFuelConsumption}");
-      ShowCargo(truck.GetAllCargo());
-    }
-
-    private static void ShowCargo(Dictionary<string, int> cargo)
-    {
-      Console.WriteLine("Truck cargo:");
-
-      foreach (var (key, value) in cargo) Console.WriteLine($"{key} {value}");
-
-      Console.WriteLine();
+      Console.WriteLine(truck.GetAllCargo());
     }
 
     private static int SelectTruck(int trucksCount)

@@ -3,7 +3,7 @@ using static System.Int32;
 
 namespace Task2._1
 {
-  internal class Program
+  internal static class Program
   {
     private static void Main()
     {
